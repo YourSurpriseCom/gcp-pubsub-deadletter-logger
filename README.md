@@ -1,11 +1,27 @@
-# GCP Pub/Sub dead letter logger
+# GCP Pub/Sub dead-letter logger
 [![Go Report Card](https://goreportcard.com/badge/github.com/YourSurpriseCom/gcp-pubsub-deadletter-logger)](https://goreportcard.com/report/github.com/YourSurpriseCom/gcp-pubsub-deadletter-logger) 
 ![workflow ci](https://github.com/YourSurpriseCom/gcp-pubsub-deadletter-logger/actions/workflows/ci.yml/badge.svg)
 ![workflow release ](https://github.com/YourSurpriseCom/gcp-pubsub-deadletter-logger/actions/workflows/release.yml/badge.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# Overview
-This logger can be used to log dead letter events to Google Cloud Logging. 
+## Overview
+This application is used to log dead-letter events to Google Cloud Logging. 
+
+### Example usage
+The BigQuery subscription can sent every event directly to a BigQuery table. 
+When an event cannot be added to the BigQuery table, the error is added to the event message and sent to the dead-letter topic.
+Setting this application as an Cloud-Run push subscription on the dead-letter topic, the error and event will be logged to Google Cloud Logging.
+This way its possible to see the error, which occurred on the BigQuery subscription directly in Google Cloud Logging.
+
+## Installation
+This application should be installed as a dead-letter topic push subscription to a Cloud-Run instance running this application.
+
+### Configuration
+Setup a Cloud-Run instance and use the docker container `yoursurprise/gcp-pubsub-deadletter-logger` with the following environment variables:
+
+* `GOOGLE_PROJECT_ID` - holds the Google project id where it should write to.
+* `LOG_LEVEL` - Enable optional debug information (`info` or `debug`)
+
 
 ## Communication flow
 To use this service, your topic needs a dead letter topic, which has a push subscription to a cloud run container running this software. See graph below:
@@ -15,6 +31,16 @@ To use this service, your topic needs a dead letter topic, which has a push subs
 | NORMAL |        | PUSH         |  (failed)  | DEADLETTER |       | PUSH Subscription |       |  Cloud Logging  |
 | Topic  |  ==>   | Subscription |     ==>    | Topic      |  ==>  | Deadletter-logger |  ==>  | (event + error) |
 +--------+        +--------------+            +------------+       +-------------------+       +-----------------+ 
+```
+
+## Usage
+This application is available as a docker container and can be started as following:
+
+```shell
+foo@bar:~$ docker run --name gcp-pubsub-deadletter-logger \
+    -e GOOGLE_PROJECT_ID="<google-project-id>" \
+    -e LOG_LEVEL="debug" \
+    yoursurprise/gcp-pubsub-deadletter-logger:latest
 ```
 
 ## Local developing
