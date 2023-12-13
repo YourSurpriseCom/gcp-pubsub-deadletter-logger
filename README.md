@@ -1,4 +1,10 @@
 # GCP Pub/Sub dead letter logger
+[![Go Report Card](https://goreportcard.com/badge/github.com/YourSurpriseCom/gcp-pubsub-deadletter-logger)](https://goreportcard.com/report/github.com/YourSurpriseCom/gcp-pubsub-deadletter-logger) 
+![workflow ci](https://github.com/YourSurpriseCom/gcp-pubsub-deadletter-logger/actions/workflows/ci.yml/badge.svg)
+![workflow release ](https://github.com/YourSurpriseCom/gcp-pubsub-deadletter-logger/actions/workflows/release.yml/badge.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+# Overview
 This logger can be used to log dead letter events to Google Cloud Logging. 
 
 ## Communication flow
