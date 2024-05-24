@@ -1,6 +1,6 @@
 module github.com/YourSurpriseCom/gcp-pubsub-deadletter-logger
 
-go 1.21.5
+go 1.22
 
 require github.com/jlentink/yaglogger v0.0.7
 
