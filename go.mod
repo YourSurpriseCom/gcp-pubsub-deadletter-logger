@@ -29,7 +29,7 @@ require (
 	github.com/gorilla/mux v1.8.1
 	github.com/logrusorgru/aurora/v4 v4.0.0 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
-	github.com/vrischmann/envconfig v1.3.0
+	github.com/vrischmann/envconfig v1.4.1
 	golang.org/x/crypto v0.31.0 // indirect
 	golang.org/x/net v0.33.0 // indirect
 	golang.org/x/oauth2 v0.24.0 // indirect
