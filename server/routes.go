@@ -30,22 +30,22 @@ func GetRouter() *mux.Router {
 		cloud.LogError(bodyBytes)
 
 		w.WriteHeader(http.StatusOK)
-		fmt.Fprintf(w, "ok!")
+		_, _ = fmt.Fprintf(w, "ok!")
 	}).Methods(http.MethodPost)
 
 	router.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
-		fmt.Fprintf(w, "pong")
+		_, _ = fmt.Fprintf(w, "pong")
 	}).Methods(http.MethodGet)
 
 	router.HandleFunc("/.well-known/health", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
-		fmt.Fprintf(w, "healthy")
+		_, _ = fmt.Fprintf(w, "healthy")
 	}).Methods(http.MethodGet)
 
 	router.HandleFunc("/.well-known/startup", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
-		fmt.Fprintf(w, "ready!")
+		_, _ = fmt.Fprintf(w, "ready!")
 	}).Methods(http.MethodGet)
 
 	return router
