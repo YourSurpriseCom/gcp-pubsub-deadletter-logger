@@ -19,3 +19,7 @@ updates:
     schedule:
       interval: weekly
       day: sunday
+    groups:
+      actions:
+        patterns:
+          - "*"
